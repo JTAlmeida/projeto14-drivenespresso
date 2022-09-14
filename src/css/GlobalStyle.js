@@ -134,23 +134,105 @@ const Global = css`
   * {
     box-sizing: border-box;
   }
-  a{
+  a {
     text-decoration: none;
   }
   html,
   body {
-    width: 100%;
-    background-color: #FAFAFA;
+    width: 100vw;
+    background-color: #fff8e7;
+    font-family: "Roboto", sans-serif;
   }
 
   .root {
-    width: 100%;
+    width: 100vw;
     word-wrap: break-word;
   }
-  
-  button{
-    border:none;
+
+  button {
+    border: none;
   }
+
+  img {
+    cursor: pointer;
+  }
+
+  //BM SIDEBAR
+  /* Position and sizing of burger button .*/
+  .bm-burger-button {
+    position: relative;
+    width: 30px;
+    height: 25px;
+    left: 15px;
+    top: 0px;
+  }
+
+  /* Color/shape of burger icon bars */
+  .bm-burger-bars {
+    background: #373a47;
+  }
+
+  /* Color/shape of burger icon bars on hover*/
+  .bm-burger-bars-hover {
+    background: #988C51;
+  }
+
+  /* Position and sizing of clickable cross button */
+  .bm-cross-button {
+    height: 24px;
+    width: 24px;
+  }
+
+  /* Color/shape of close button cross */
+  .bm-cross {
+    background: #f5f5f5;
+  }
+
+  /*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+  .bm-menu-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+
+  /* General sidebar styles */
+  .bm-menu {
+    background: #988C51;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.5em;
+  }
+
+  /* Wrapper for item list */
+  .bm-item-list {
+    color: #b8b7ad;
+    padding: 0.5em;
+  }
+
+  /* Individual item */
+  .bm-item {
+    display: inline-block;
+    color: #f0f0f0;
+    margin-bottom: 20px;
+    text-align: left;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .bm-item:hover {
+    color: #ffffff;
+  }
+
+  /* Styling of overlay */
+  .bm-overlay {
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
   @media (max-width: 375px) {
   }
 `;

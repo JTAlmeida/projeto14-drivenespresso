@@ -158,7 +158,7 @@ const Global = css`
   }
 
   //BM SIDEBAR
-  /* Position and sizing of burger button */
+  /* Position and sizing of burger button .*/
   .bm-burger-button {
     position: relative;
     width: 30px;

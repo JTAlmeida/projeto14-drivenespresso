@@ -139,13 +139,13 @@ const Global = css`
   }
   html,
   body {
-    width: 100vh;
-    background-color: #fafafa;
+    width: 100vw;
+    background-color: #fff8e7;
     font-family: "Roboto", sans-serif;
   }
 
   .root {
-    width: 100vh;
+    width: 100vw;
     word-wrap: break-word;
   }
 
@@ -153,14 +153,18 @@ const Global = css`
     border: none;
   }
 
+  img {
+    cursor: pointer;
+  }
+
   //BM SIDEBAR
   /* Position and sizing of burger button */
   .bm-burger-button {
-    position: fixed;
-    width: 36px;
-    height: 30px;
-    left: 36px;
-    top: 36px;
+    position: relative;
+    width: 30px;
+    height: 25px;
+    left: 15px;
+    top: 0px;
   }
 
   /* Color/shape of burger icon bars */
@@ -181,7 +185,7 @@ const Global = css`
 
   /* Color/shape of close button cross */
   .bm-cross {
-    background: #bdc3c7;
+    background: #f5f5f5;
   }
 
   /*
@@ -190,32 +194,34 @@ Note: Beware of modifying this element as it can break the animations - you shou
 */
   .bm-menu-wrap {
     position: fixed;
+    top: 0;
+    left: 0;
     height: 100%;
   }
 
   /* General sidebar styles */
   .bm-menu {
-    background: #373a47;
+    background: #988C51;
     padding: 2.5em 1.5em 0;
-    font-size: 1.15em;
+    font-size: 1.5em;
   }
 
   /* Morph shape necessary with bubble or elastic */
   .bm-morph-shape {
-    fill: #373a47;
+    fill: #988C51;
   }
 
   /* Wrapper for item list */
   .bm-item-list {
     color: #b8b7ad;
-    padding: 0.8em;
+    padding: 0.5em;
   }
 
   /* Individual item */
   .bm-item {
     display: inline-block;
-    color: #d1d1d1;
-    margin-bottom: 10px;
+    color: #f0f0f0;
+    margin-bottom: 20px;
     text-align: left;
     text-decoration: none;
     transition: color 0.2s;
@@ -227,6 +233,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
   /* Styling of overlay */
   .bm-overlay {
+    position: fixed;
+    top: 0;
     background: rgba(0, 0, 0, 0.3);
   }
 

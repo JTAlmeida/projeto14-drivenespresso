@@ -22,7 +22,7 @@ export const ContentWrapper = styled.div`
   overflow: hidden;
 
   &:hover {
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 `;
 

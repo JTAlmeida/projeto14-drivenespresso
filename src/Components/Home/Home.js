@@ -1,11 +1,8 @@
-import logo from "../../assets/logo.png";
-import cartIcon from "../../assets/iconfinder_cart_353403.svg";
 import produto from "../../assets/produto.png";
-import Sidebar from "../Sidebar/Sidebar";
+import Header from "../Header/Header";
 import { useNavigate } from "react-router-dom";
 import {
   Wrapper,
-  Header,
   ContentWrapper,
   ProductWrapper,
   Form,
@@ -14,28 +11,9 @@ import {
 } from "./Home.style";
 
 export default function Home() {
-  const navigate = useNavigate();
-
   return (
     <Wrapper>
-      <Header>
-        <Sidebar />
-        <img
-          src={logo}
-          alt="logo"
-          onClick={() => {
-            navigate("/");
-          }}
-        />
-        <img
-          src={cartIcon}
-          alt="cartIcon"
-          className="svg"
-          onClick={() => {
-            navigate("/checkout");
-          }}
-        />
-      </Header>
+      <Header />
       <ContentWrapper>
         <SingleProduct />
         <SingleProduct />
@@ -53,7 +31,7 @@ export default function Home() {
 
 function SingleProduct() {
   const navigate = useNavigate();
-  
+
   return (
     <ProductWrapper>
       <img src={produto} alt="produto" />
@@ -70,9 +48,13 @@ function SingleProduct() {
           required
         />
         <Button>Adicionar ao carrinho</Button>
-        <Button onClick={() => {
+        <Button
+          onClick={() => {
             navigate("/checkout");
-          }}>Comprar</Button>
+          }}
+        >
+          Comprar
+        </Button>
       </Form>
     </ProductWrapper>
   );

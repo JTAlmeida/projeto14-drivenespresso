@@ -54,7 +54,7 @@ export const ProductWrapper = styled.div`
   padding: 15px;
   margin-top: 15px;
   min-height: 30%;
-  max-height: 40%;
+  max-height: 100%;
   width: 30%;
   background-color: #fafafa;
 
@@ -80,37 +80,46 @@ export const ProductWrapper = styled.div`
 
   h3 {
     color: #3d8705;
+    margin-bottom: 10px;
   }
 `;
 
-export const Input = styled.input`
-  height: 10%;
-  width: 15%;
-  text-align: center;
+export const Form = styled.form`
+  width: 100%;
   display: flex;
-  border: 1px solid #ffffff;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: space-between;
+`;
+
+export const Input = styled.input`
+  height: 30px;
+  width: 60px;
+  padding-left: 6px;
+  text-align: center;
   border-radius: 5px;
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   font-weight: 400;
   margin: 5px;
+  background-color: #fff8e7;
 
   &::placeholder {
-    color: rgba(0, 0, 0, 1);
-    font-size: 20px;
+    color: #6f6f70;
+    font-size: 18px;
     font-weight: 400;
   }
 `;
 
 export const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 15%;
-  width: 40%;
+  text-align: center;
+  min-height: 40px;
+
+  width: 100px;
   background-color: #988c51;
   color: #fafafa;
   border-radius: 5px;
   font-size: 15px;
   font-weight: 700;
+  margin-bottom: 5px;
 `;

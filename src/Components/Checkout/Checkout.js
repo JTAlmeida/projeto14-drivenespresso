@@ -1,6 +1,14 @@
 import Header from "../Header/Header";
 import produto from "../../assets/produto.png";
-import { Wrapper, ContentWrapper, ProductWrapper, Form, Input } from "./Checkout.style";
+import {
+  Wrapper,
+  ContentWrapper,
+  ProductWrapper,
+  Form,
+  Input,
+  Footer,
+  Button
+} from "./Checkout.style";
 
 export default function Checkout() {
   return (
@@ -17,12 +25,15 @@ export default function Checkout() {
         <CartProduct />
         <CartProduct />
       </ContentWrapper>
+      <Footer>
+        <h1>Valor Final</h1>
+        <Button>Finalizar compra</Button>
+      </Footer>
     </Wrapper>
   );
 }
 
 function CartProduct() {
-
   return (
     <ProductWrapper>
       <img src={produto} alt="produto" />

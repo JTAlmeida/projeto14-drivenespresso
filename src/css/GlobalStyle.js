@@ -206,11 +206,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
     font-size: 1.5em;
   }
 
-  /* Morph shape necessary with bubble or elastic */
-  .bm-morph-shape {
-    fill: #988C51;
-  }
-
   /* Wrapper for item list */
   .bm-item-list {
     color: #b8b7ad;

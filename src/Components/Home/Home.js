@@ -3,12 +3,17 @@ import { Wrapper, ContentWrapper } from "./Home.style";
 import { getProducts } from "../../service/API";
 import { useContext, useEffect } from "react";
 import ProductsContext from "../../context/ProductsContext";
+import UserContext from "../../context/UserContext";
 import Product from "../Product";
 
 export default function Home() {
   const { setProducts, products } = useContext(ProductsContext);
-
+  const { user, setUser } = useContext(UserContext);
   useEffect(() => {
+    if (user !== "") {
+      setUser(JSON.parse(localStorage.getItem("mywallet")));
+    }
+
     getProducts().then((products) => {
       setProducts(products.data);
     });

@@ -7,6 +7,7 @@ import Checkout from "./Checkout/Checkout";
 import UserContext from "../context/UserContext";
 import ProductsContext from "../context/ProductsContext";
 import { useState } from "react";
+import { useEffect } from "react";
 
 function App() {
   const [cardItems, setCardItems] = useState([]);
@@ -15,9 +16,11 @@ function App() {
 
   const auth = JSON.parse(localStorage.getItem("drivenespresso"));
 
-  if (auth && user === "") {
-    setUser(JSON.parse(localStorage.getItem("drivenespresso")));
-  }
+  useEffect(() => {
+    if (auth && user === "") {
+      setUser(JSON.parse(localStorage.getItem("drivenespresso")));
+    }
+  }, []);
 
   return (
     <>

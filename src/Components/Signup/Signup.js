@@ -1,8 +1,7 @@
 import Header from "../Header/Header";
 import { Wrapper, ContentWrapper, Form, Input, Button } from "./Signup.style";
 import { useNavigate, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import UserContext from "../../context/UserContext";
 import { signUp } from "../../service/API";
 import { ThreeDots } from "react-loader-spinner";
@@ -67,89 +66,81 @@ export default function Signup() {
     <Wrapper>
       <Header />
       <ContentWrapper>
-        {isLoading ? (
-          <Form onSubmit={sendSignUp}>
-            <Input
-              disabled
-              placeholder="Nome"
-              name="name"
-              type="name"
-              value={form.name}
-              onChange={handleForm}
-              required
-            />
-            <Input
-              disabled
-              placeholder="E-mail"
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleForm}
-              required
-            />
-            <Input
-              disabled
-              placeholder="Senha"
-              name="password"
-              type="password"
-              value={form.password}
-              onChange={handleForm}
-              required
-            />
-            <Input
-              disabled
-              placeholder="Confirme a senha"
-              name="confirmPassword"
-              type="password"
-              value={form.confirmPassword}
-              onChange={handleForm}
-              required
-            />
+        <Form onSubmit={sendSignUp}>
+          {isLoading ? (
+            <>
+              <Input
+                disabled
+                placeholder="Nome"
+                name="name"
+                type="name"
+                value={form.name}
+              />
+              <Input
+                disabled
+                placeholder="E-mail"
+                name="email"
+                type="email"
+                value={form.email}
+              />
+              <Input
+                disabled
+                placeholder="Senha"
+                name="password"
+                type="password"
+                value={form.password}
+              />
+              <Input
+                disabled
+                placeholder="Confirme a senha"
+                name="confirmPassword"
+                type="password"
+                value={form.confirmPassword}
+              />
 
-            <Button disabled type="submit">
-              <ThreeDots color="rgba(255,255,255,1)" height={10} with={45} />
-            </Button>
-            <Link to="/sign-in">Já tem uma conta? Entre agora!</Link>
-          </Form>
-        ) : (
-          <Form onSubmit={sendSignUp}>
-            <Input
-              placeholder="Nome"
-              name="name"
-              type="name"
-              value={form.name}
-              onChange={handleForm}
-              required
-            />
-            <Input
-              placeholder="E-mail"
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleForm}
-              required
-            />
-            <Input
-              placeholder="Senha"
-              name="password"
-              type="password"
-              value={form.password}
-              onChange={handleForm}
-              required
-            />
-            <Input
-              placeholder="Confirme a senha"
-              name="confirmPassword"
-              type="password"
-              value={form.confirmPassword}
-              onChange={handleForm}
-              required
-            />
-
-            <Button type="submit">Cadastrar</Button>
-            <Link to="/sign-in">Já tem uma conta? Entre agora!</Link>
-          </Form>
-        )}
+              <Button disabled type="submit">
+                <ThreeDots color="rgba(255,255,255,1)" height={10} with={45} />
+              </Button>
+            </>
+          ) : (
+            <>
+              <Input
+                placeholder="Nome"
+                name="name"
+                type="name"
+                value={form.name}
+                onChange={handleForm}
+                required
+              />
+              <Input
+                placeholder="E-mail"
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleForm}
+                required
+              />
+              <Input
+                placeholder="Senha"
+                name="password"
+                type="password"
+                value={form.password}
+                onChange={handleForm}
+                required
+              />
+              <Input
+                placeholder="Confirme a senha"
+                name="confirmPassword"
+                type="password"
+                value={form.confirmPassword}
+                onChange={handleForm}
+                required
+              />
+              <Button type="submit">Cadastrar</Button>
+            </>
+          )}
+          <Link to="/sign-in">Já tem uma conta? Entre agora!</Link>
+        </Form>
       </ContentWrapper>
     </Wrapper>
   );

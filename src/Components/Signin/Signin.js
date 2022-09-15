@@ -42,7 +42,7 @@ export default function Signup() {
             required
           />
           <Button type="submit">Entrar</Button>
-          <Link to="/sign-in">Não tem uma conta? Cadastre-se!</Link>
+          <Link to="/sign-up">Não tem uma conta? Cadastre-se!</Link>
         </Form>
       </ContentWrapper>
     </Wrapper>

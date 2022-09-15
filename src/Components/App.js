@@ -5,25 +5,37 @@ import Signin from "./Signin/Signin";
 import Signup from "./Signup/Signup";
 import Checkout from "./Checkout/Checkout";
 import UserContext from "../context/UserContext";
+import ProductsContext from "../context/ProductsContext";
 import { useState } from "react";
 
 function App() {
+  const [cardItems, setCardItems] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [user, setUser] = useState("");
 
-  const [cardItems, setCardItems]=useState([]);
-  const [products, setProducts]= useState([]);
+  const auth = JSON.parse(localStorage.getItem("drivenespresso"));
+
+  if (auth && user === "") {
+    setUser(JSON.parse(localStorage.getItem("drivenespresso")));
+  }
+
   return (
     <>
-    <UserContext.Provider value={{setProducts,products,cardItems,setCardItems}}>
-      <GlobalStyle/>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/sign-up" element={<Signup />}></Route>
-          <Route path="/sign-in" element={<Signin />}></Route>
-          <Route path="/checkout" element={<Checkout />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </UserContext.Provider>
+      <GlobalStyle />
+      <ProductsContext.Provider
+        value={{ setProducts, products, cardItems, setCardItems }}
+      >
+        <UserContext.Provider value={{ user, setUser }}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/sign-up" element={<Signup />}></Route>
+              <Route path="/sign-in" element={<Signin />}></Route>
+              <Route path="/checkout" element={<Checkout />}></Route>
+            </Routes>
+          </BrowserRouter>
+        </UserContext.Provider>
+      </ProductsContext.Provider>
     </>
   );
 }

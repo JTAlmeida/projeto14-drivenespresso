@@ -7,4 +7,9 @@ function getProducts(){
     return promise
 }
 
-export{getProducts}
+function postProducts(body){
+    const promise =axios.post(`${URL_BASE}`,body);
+    return promise
+}
+
+export {getProducts,postProducts}

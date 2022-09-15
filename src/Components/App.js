@@ -4,11 +4,17 @@ import Home from "./Home/Home";
 import Signin from "./Signin/Signin";
 import Signup from "./Signup/Signup";
 import Checkout from "./Checkout/Checkout";
+import UserContext from "../context/UserContext";
+import { useState } from "react";
 
 function App() {
+
+  const [cardItems, setCardItems]=useState([]);
+  const [products, setProducts]= useState([]);
   return (
     <>
-      <GlobalStyle />
+    <UserContext.Provider value={{setProducts,products,cardItems,setCardItems}}>
+      <GlobalStyle/>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -17,6 +23,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />}></Route>
         </Routes>
       </BrowserRouter>
+    </UserContext.Provider>
     </>
   );
 }

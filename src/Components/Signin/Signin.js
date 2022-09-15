@@ -39,9 +39,9 @@ export default function Signup() {
       setIsLoading(false);
       return alert(res.response.data.message);
     });
-    promise.then((res) => {
+    promise.then(async (res) => {
       setIsLoading(false);
-      setUser(res.data);
+      await setUser(res.data);
       localStorage.setItem(
         "drivenespresso",
         JSON.stringify({

@@ -9,9 +9,10 @@ import Product from "../Product";
 export default function Home() {
   const { setProducts, products } = useContext(ProductsContext);
   const { user, setUser } = useContext(UserContext);
+
   useEffect(() => {
-    if (user !== "") {
-      setUser(JSON.parse(localStorage.getItem("mywallet")));
+    if (user === "") {
+      setUser(JSON.parse(localStorage.getItem("drivenespresso")));
     }
 
     getProducts().then((products) => {

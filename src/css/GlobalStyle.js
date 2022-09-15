@@ -202,19 +202,21 @@ Note: Beware of modifying this element as it can break the animations - you shou
   /* General sidebar styles */
   .bm-menu {
     background: #988C51;
-    padding: 2.5em 1.5em 0;
+    padding: 1.5em 1.5em 0;
     font-size: 1.5em;
   }
 
   /* Wrapper for item list */
   .bm-item-list {
+    display: flex;
+    flex-direction: column;
+    //align-items: center;
     color: #b8b7ad;
     padding: 0.5em;
   }
 
   /* Individual item */
   .bm-item {
-    display: inline-block;
     color: #f0f0f0;
     margin-bottom: 20px;
     text-align: left;
@@ -222,14 +224,25 @@ Note: Beware of modifying this element as it can break the animations - you shou
     transition: color 0.2s;
   }
 
-  p img{
-    position: absolute;
-    right: 15px;
-    max-height: 25px;
+  .bm-menu :nth-child(2){
+    margin-bottom: 40px;
   }
 
-  .bm-item:hover {
-    color: #ffffff;
+  .bm-menu :nth-child(1){
+    display: flex;
+    align-self: center;
+  }
+
+  h4{
+    position: absolute;
+    top: 19%;
+    right: 10px;
+  }
+
+  h4 img{
+    position: absolute;
+    right: 8px;
+    max-height: 25px;
   }
 
   /* Styling of overlay */

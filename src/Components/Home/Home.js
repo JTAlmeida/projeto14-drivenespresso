@@ -11,9 +11,7 @@ export default function Home() {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    if (user === "") {
-      setUser(JSON.parse(localStorage.getItem("drivenespresso")));
-    }
+    setUser(JSON.parse(localStorage.getItem("drivenespresso")));
 
     getProducts().then((products) => {
       setProducts(products.data);

@@ -13,7 +13,7 @@ export default function Checkout() {
     let count=0;
     for(let i=0; i < cardItems.length;i++){
       const total = (Number(cardItems[i].pPrice)*(cardItems[i].qtd));
-      count+=total;
+      count +=total;
     }
     setTotal(count);
   },[]);

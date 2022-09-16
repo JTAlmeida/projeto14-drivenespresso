@@ -15,6 +15,7 @@ export const Wrapper = styled.div`
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 
   img {
+    cursor: pointer;
     height: 14vh;
   }
 
@@ -22,4 +23,16 @@ export const Wrapper = styled.div`
     height: 5vh;
     padding-right: 15px;
   }
+`;
+
+export const ItemCount = styled.div`
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  right: 22px;
+  bottom: 57%;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #988c51;
+  color: #f3f3f3;
 `;

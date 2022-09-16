@@ -222,6 +222,12 @@ Note: Beware of modifying this element as it can break the animations - you shou
     transition: color 0.2s;
   }
 
+  p img{
+    position: absolute;
+    right: 15px;
+    max-height: 25px;
+  }
+
   .bm-item:hover {
     color: #ffffff;
   }

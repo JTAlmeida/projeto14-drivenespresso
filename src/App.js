@@ -9,12 +9,14 @@ import UserContext from './context/UserContext';
 
 function App() {
 
-  const [cardItems, setCardItems]=useState([]);
+  const [cartItems, setCartItems]=useState([]);
   const [products, setProducts]= useState([]);
+  const [productsWihtNewQuantity, setproductsWihtNewQuantity]=useState([]);
+  const [total,setTotal]=useState("");
 
   return (
     <>
-    <UserContext.Provider value={{setProducts,products,cardItems,setCardItems}}>
+    <UserContext.Provider value={{setProducts,products,cartItems,setCartItems,productsWihtNewQuantity,setproductsWihtNewQuantity,total,setTotal}}>
       <GlobalStyle/>
       <BrowserRouter>
         <Routes>

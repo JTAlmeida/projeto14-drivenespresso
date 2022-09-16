@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../context/UserContext"
 import { postProducts } from "../../service/API";
@@ -6,28 +6,40 @@ import {ProductWrapper,Form,Input,Button,} from "./Home.style";
 
 
 export default function Product(props){
-    const {price,productImage,description,name,id}=props;
-
-    const {cardItems,setCardItems}=useContext(UserContext);
-    const navigate = useNavigate();
-    const [qtd,setQtd]=useState("");
+    
   
+  const {price,productImage,description,name,id,reload,setReload}=props;
+  const locallySavedUserProducts = JSON.parse(localStorage.getItem('userItem'));
+    
+  const {cartItems,setCartItems}=useContext(UserContext);
+  const navigate = useNavigate();
+  const [qtd,setQtd]=useState("");
+
     function handleSubmit(e){
         e.preventDefault();
         setQtd(qtd);
       }
   
-      function addItemToCard(name,price,image){
-
-        setCardItems([
-          ...cardItems,
-          {
-            pId:id,
+      function addItemToCart(name,price,image){
+        
+        setCartItems([
+          ...cartItems,
+          {            
+            pId:cartItems.length,
             pName: name,
             pImage: productImage, 
             pPrice:price,
             qtd:Number(qtd),
-            }])
+            }]);
+
+            if(locallySavedUserProducts === null){
+              setReload(!reload);
+              localStorage.setItem('userItem', JSON.stringify(cartItems));
+            } else if (locallySavedUserProducts && cartItems.length > locallySavedUserProducts.length){
+              setReload(!reload);  
+              localStorage.setItem('userItem', JSON.stringify(cartItems));
+                setCartItems(localStorage.getItem('userItem'));
+            }
 
             const body = {
               pName: name,
@@ -35,21 +47,19 @@ export default function Product(props){
               pPrice:price,
               qtd :qtd
             }
-
-            console.log(body);
-            
+           
             postProducts(body).then(()=>{
               console.log('postado');
             }).catch((error)=>{
               console.error(error);
             })
       }
-  
+
+      
       function valuePrice(price){
         const newValue = ((price)/100).toFixed(2).replace(".",",");
         return newValue
       }
-  
     return(
         <>
              <ProductWrapper>
@@ -68,7 +78,7 @@ export default function Product(props){
                  value={qtd}
                  onChange={e=> setQtd(e.target.value)}
                />
-               <Button type='submit' onClick={()=> {addItemToCard( name, price,productImage)}}>Adicionar ao carrinho</Button>
+               <Button type='submit' onClick={()=> {addItemToCart(name,price,productImage,id)}}>Adicionar ao carrinho</Button>
                <Button
                  onClick={() => {
                    navigate("/checkout");
@@ -79,7 +89,5 @@ export default function Product(props){
              </Form>
            </ProductWrapper>       
         </>
-
-
     )
 }

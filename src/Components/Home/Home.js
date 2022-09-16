@@ -1,20 +1,24 @@
 import Header from "../Header/Header";
 import {Wrapper,ContentWrapper} from "./Home.style";
 import { getProducts } from "../../service/API";
-import {  useContext, useEffect} from "react";
+import {  useContext, useEffect, useState} from "react";
 import UserContext from "../../context/UserContext"
 import Product from '../Home/Product'
 
 
 export default function Home() {
   
-  const {setProducts,products} = useContext(UserContext);
-
-    useEffect(()=>{
+  const {setProducts,products,cartItems,setCartItems} = useContext(UserContext);
+  const [reload,setReload]=useState(false);
+    
+  useEffect(()=>{
       getProducts().then((products)=>{
         setProducts(products.data);
+      }).catch(error=>{
+        console.error(error);
       })
     },[]);
+
   
   return (
     <Wrapper>
@@ -29,6 +33,8 @@ export default function Home() {
         description={product.description}
         name={product.pName}
         id={product._id}
+        reload={reload}
+        setReload={setReload}
         />)}      
       </ContentWrapper>
     </Wrapper>

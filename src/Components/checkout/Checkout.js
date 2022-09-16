@@ -6,19 +6,22 @@ import CartProduct from './CartProduct'
 
 export default function Checkout() {
 
-  const{cardItems}=useContext(UserContext);
-  const [total,setTotal]=useState("");
+  const{cartItems,total,setTotal,setCartItems}=useContext(UserContext);
 
   useEffect(()=>{
-    let count=0;
-    for(let i=0; i < cardItems.length;i++){
-      const total = (Number(cardItems[i].pPrice)*(cardItems[i].qtd));
-      count +=total;
-    }
-    setTotal(count);
-  },[]);
+    updateTotal();
+   },[...cartItems])
+
+function updateTotal(){
+  let count=0;
+  for(let i=0; i < cartItems.length;i++){
+    const total2 = (Number(cartItems[i].pPrice)*(cartItems[i].qtd));
+    count +=total2;
+  }
+  setTotal(count);
+}
   
-  function valuePrice(value){
+function valuePrice(value){
     const newValue = ((value)/100).toFixed(2).replace(".",",");
     return newValue
   }
@@ -27,21 +30,23 @@ export default function Checkout() {
     <Wrapper>
       <Header/>
       <ContentWrapper>
-        {cardItems.map((product,index)=>
+        {cartItems.map((product,index)=>
         <CartProduct 
-        index={index}
-        id={product.pId}
+        key={index}
+        id={index}
         name={product.pName}
         price={product.pPrice}
         image={product.pImage}
         qtd={product.qtd}
+        setTotal={setTotal}
         />)}
       </ContentWrapper>
       <Footer>
         <h1>Valor Final R${valuePrice(total)}</h1>
-        <Button>Finalizar compra</Button>
+        <Button >Finalizar compra</Button>
       </Footer>
     </Wrapper>
   );
 }
+
 

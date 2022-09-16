@@ -10,9 +10,12 @@ export default () => {
   const navigate = useNavigate();
 
   let userName;
-  if (user.name) {
-    userName = user.name.split(" ")[0];
+  if(user){
+    if (user.name) {
+      userName = user.name.split(" ")[0];
+    }
   }
+
 
   return (
     <>

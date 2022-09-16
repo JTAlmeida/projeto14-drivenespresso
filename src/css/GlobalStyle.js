@@ -151,9 +151,6 @@ const Global = css`
 
   button {
     border: none;
-  }
-
-  img {
     cursor: pointer;
   }
 
@@ -174,7 +171,7 @@ const Global = css`
 
   /* Color/shape of burger icon bars on hover*/
   .bm-burger-bars-hover {
-    background: #988C51;
+    background: #988c51;
   }
 
   /* Position and sizing of clickable cross button */
@@ -197,11 +194,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
     top: 0;
     left: 0;
     height: 100%;
+    min-width: 20%;
+    max-width: 60%;
   }
 
   /* General sidebar styles */
   .bm-menu {
-    background: #988C51;
+    background: #988c51;
     padding: 1.5em 1.5em 0;
     font-size: 1.5em;
   }
@@ -210,7 +209,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
   .bm-item-list {
     display: flex;
     flex-direction: column;
-    //align-items: center;
     color: #b8b7ad;
     padding: 0.5em;
   }
@@ -224,22 +222,48 @@ Note: Beware of modifying this element as it can break the animations - you shou
     transition: color 0.2s;
   }
 
-  .bm-menu :nth-child(2){
-    margin-bottom: 40px;
-  }
-
-  .bm-menu :nth-child(1){
+  .bm-menu :nth-child(1) {
     display: flex;
     align-self: center;
   }
 
-  h4{
-    position: absolute;
-    top: 19%;
-    right: 10px;
+  .bm-menu a{
+    position: relative;
+    display: flex;
+    align-self: center;
+    width: auto;
+    margin-bottom: 30px;
   }
 
-  h4 img{
+  .bm-menu a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #fafafa;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .bm-menu a:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+  h4 {
+    position: absolute;
+    top: 20%;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  h4 img {
     position: absolute;
     right: 8px;
     max-height: 25px;

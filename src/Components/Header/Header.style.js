@@ -15,6 +15,7 @@ export const Wrapper = styled.div`
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 
   img {
+    cursor: pointer;
     height: 14vh;
   }
 

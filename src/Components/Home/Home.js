@@ -8,7 +8,7 @@ import Product from "../Product";
 
 export default function Home() {
   const { setProducts, products } = useContext(ProductsContext);
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("drivenespresso")));

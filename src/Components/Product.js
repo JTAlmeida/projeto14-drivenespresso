@@ -1,6 +1,9 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProductsContext from "../context/ProductsContext";
+import minus from "../assets/minus.png";
+import plus from "../assets/plus.png";
+
 import {
   ProductWrapper,
   Form,
@@ -21,8 +24,6 @@ export default function Product(props) {
   }
 
   function addItemToCard(id, name, price) {
-    //  const exist = cardItems.find((product)=> product.pId === id);
-    // if(!exist){
     setCardItems([
       ...cardItems,
       {
@@ -32,7 +33,6 @@ export default function Product(props) {
         qtd: qtd,
       },
     ]);
-    // }
   }
 
   function valuePrice(price) {
@@ -48,6 +48,16 @@ export default function Product(props) {
         <h2>{description}</h2>
         <h3>R${valuePrice(price)}</h3>
         <Form onSubmit={lala}>
+          <img
+            src={minus}
+            alt="-"
+            onClick={() => {
+              if (Number(qtd) === 0) {
+                return;
+              }
+              setQtd(Number(qtd) - 1);
+            }}
+          />
           <Input
             placeholder="0"
             name="amount"
@@ -57,6 +67,18 @@ export default function Product(props) {
             required
             value={qtd}
             onChange={(e) => setQtd(e.target.value)}
+          />
+          <img
+            src={plus}
+            alt="+"
+            onClick={() => {
+              {
+                if (Number(qtd) === 100) {
+                  return alert("Não é possível adicionar mais de 100 itens.");
+                }
+                setQtd(Number(qtd) + 1);
+              }
+            }}
           />
           <Button
             type="submit"

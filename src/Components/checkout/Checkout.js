@@ -1,12 +1,12 @@
 import Header from "../Header/Header";
 import { Wrapper, ContentWrapper, Footer, Button } from "./Checkout.style";
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../../context/UserContext";
+import ProductsContext from "../../context/ProductsContext";
 import CartProduct from "./CartProduct";
 import { Link } from "react-router-dom";
 
 export default function Checkout() {
-  const { total, setTotal } = useContext(UserContext);
+  const { total, setTotal } = useContext(ProductsContext);
   const [reload, setReload] = useState(false);
   let locallySavedUserProducts = JSON.parse(localStorage.getItem("userItem"));
 

@@ -31,4 +31,4 @@ function signIn(body) {
   return axios.post(signInAPI, body);
 }
 
-export { getProducts, signUp, signIn, postProducts };
+export { getProducts, signUp, signIn, postProducts};

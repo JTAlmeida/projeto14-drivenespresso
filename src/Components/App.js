@@ -1,17 +1,18 @@
 import GlobalStyle from "../css/GlobalStyle";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
 import Home from "./Home/Home";
 import Signin from "./Signin/Signin";
 import Signup from "./Signup/Signup";
-import Checkout from "./Checkout/Checkout";
+import Checkout from "./checkout/Checkout.js";
 import UserContext from "../context/UserContext";
 import ProductsContext from "../context/ProductsContext";
-import { useState } from "react";
-import { useEffect } from "react";
 
 function App() {
-  const [cardItems, setCardItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
+  const [productsWihtNewQuantity, setproductsWihtNewQuantity] = useState([]);
+  const [total, setTotal] = useState(0);
   const [user, setUser] = useState("");
 
   const auth = JSON.parse(localStorage.getItem("drivenespresso"));
@@ -26,7 +27,16 @@ function App() {
     <>
       <GlobalStyle />
       <ProductsContext.Provider
-        value={{ setProducts, products, cardItems, setCardItems }}
+        value={{
+          setProducts,
+          products,
+          cartItems,
+          setCartItems,
+          productsWihtNewQuantity,
+          setproductsWihtNewQuantity,
+          total,
+          setTotal,
+        }}
       >
         <UserContext.Provider value={{ user, setUser }}>
           <BrowserRouter>

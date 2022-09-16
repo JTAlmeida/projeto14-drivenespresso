@@ -24,6 +24,17 @@ export const ContentWrapper = styled.div`
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   overflow: auto;
 
+p{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 700;
+  color: #2e2e2e;
+}
 `;
 
 export const ProductWrapper = styled.div`
@@ -101,16 +112,19 @@ export const Footer = styled.div`
   position: fixed;
   bottom: 1vh;
   left: 2vw;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2e2e2e;
 `;
 
 export const Button = styled.button`
 display: flex;
 justify-content: center;
 align-items: center;
-height: 30px;
-min-width: 30%;
+min-height: 50%;
+min-width: 20%;
 background-color: #988c51;
-border-radius: 5px;
+border-radius: 10px;
 color: #fafafa;
 font-size: 20px;
 font-weight: 700;

@@ -11,7 +11,17 @@ export default function Home() {
   const { setProducts, products } = useContext(ProductsContext);
   const { user, setUser } = useContext(UserContext);
 
+
   useEffect(() => {
+    
+    getProducts()
+      .then((products) => {
+        setProducts(products.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     if (user === "") {
       setUser(JSON.parse(localStorage.getItem("drivenespresso")));
     }

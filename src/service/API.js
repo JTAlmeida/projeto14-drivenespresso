@@ -11,19 +11,24 @@ function createHeaders() {
   return config;
 }
 
+function postProducts(body) {
+  const promise = axios.post(`${URL_BASE}`, body);
+  return promise;
+}
+
 function getProducts() {
   const promise = axios.get(`${URL_BASE}`);
   return promise;
 }
 
 function signUp(body) {
-    const signUpAPI = `${URL_BASE}/sign-up`;
-    return axios.post(signUpAPI, body);
+  const signUpAPI = `${URL_BASE}/sign-up`;
+  return axios.post(signUpAPI, body);
 }
 
 function signIn(body) {
-    const signInAPI = `${URL_BASE}/sign-in`;
-    return axios.post(signInAPI, body);
+  const signInAPI = `${URL_BASE}/sign-in`;
+  return axios.post(signInAPI, body);
 }
 
 function postProducts(body){

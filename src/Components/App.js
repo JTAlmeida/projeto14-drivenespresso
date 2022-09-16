@@ -1,10 +1,10 @@
 import GlobalStyle from "../css/GlobalStyle";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Home from "./Home/Home";
 import Signin from "./Signin/Signin";
 import Signup from "./Signup/Signup";
-import Checkout from "./Checkout/Checkout";
+import Checkout from "./checkout/Checkout.js";
 import UserContext from "../context/UserContext";
 import ProductsContext from "../context/ProductsContext";
 

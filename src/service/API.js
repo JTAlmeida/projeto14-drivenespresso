@@ -31,9 +31,4 @@ function signIn(body) {
   return axios.post(signInAPI, body);
 }
 
-function postProducts(body){
-  const promise =axios.post(`${URL_BASE}`,body);
-  return promise
-}
-
 export { getProducts, signUp, signIn, postProducts};

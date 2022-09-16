@@ -1,59 +1,60 @@
-import { useContext, useEffect, useState } from 'react';
-import UserContext from '../../context/UserContext';
-import {ProductWrapper,Form,Input} from './Checkout.style'
+import { useState } from "react";
+import { ProductWrapper, Form, Input } from "./Checkout.style";
 
-export default function CartProduct(props){
-  
-  const {id,name,price,image,qtd} = props;
-  const {cartItems,setTotal}= useContext(UserContext);
-  const [newQtd,setNewQtd]=useState(qtd);
+export default function CartProduct({
+  id,
+  name,
+  price,
+  image,
+  qtd,
+  locallySavedUserProducts,
+  reload,
+  setReload,
+}) {
+  const [newQtd, setNewQtd] = useState(qtd);
 
-  function changeQuantity(e){
-  e.preventDefault();
-  setNewQtd(e.target.value);
-    
-const findProduct = cartItems.find((product)=> product.pId === id);
+  function changeQuantity(e) {
+    e.preventDefault();
+    setNewQtd(e.target.value);
 
-let count=0;  
-
-if(findProduct){
-    for(let i=0; i < cartItems.length;i++){
-      if(cartItems[i].pId === id){
-        cartItems[i].qtd = (Number(newQtd))+1;
+    locallySavedUserProducts.forEach((product, index) => {
+      if (product.id === id) {
+        locallySavedUserProducts[index] = {
+          id,
+          pId: locallySavedUserProducts[index].pId,
+          pImage: image,
+          pName: name,
+          pPrice: price,
+          qtd: Number(e.target.value),
+        };
+        localStorage.removeItem("userItem");
+        localStorage.setItem(
+          "userItem",
+          JSON.stringify(locallySavedUserProducts)
+        );
       }
-    }
-    console.log(cartItems);
-    for(let i=0; i < cartItems.length;i++){
-      console.log(cartItems[i].qtd);
-      const total2 = (Number(cartItems[i].pPrice)*(cartItems[i].qtd));
-      count +=total2;
-    }
-    setTotal(count);
+    });
+
+    setReload(!reload);
   }
-}
 
-function valuePrice(value){
-  const newValue = ((value)/100).toFixed(2).replace(".",",");
-  return newValue
-}
-
-return (
-  <ProductWrapper>
-    <img src={image} alt="product image"/>
-    <h1>{name}</h1>
-    <h3>R$ {valuePrice(price)}</h3>
-    <Form>
-      <Input
-        placeholder={qtd}
-        name="amount"
-        type="number"
-        min="0"
-        max="100"
-        value={newQtd}
-        required
-        onChange={changeQuantity}
-      />
-    </Form>
-  </ProductWrapper>
-);
+  return (
+    <ProductWrapper>
+      <img src={image} alt="product image" />
+      <h1>{name}</h1>
+      <h3>R$ {(price/100).toFixed(2).replace(".", ",")}</h3>
+      <Form>
+        <Input
+          placeholder={qtd}
+          name="amount"
+          type="number"
+          min="0"
+          max="100"
+          value={newQtd}
+          required
+          onChange={changeQuantity}
+        />
+      </Form>
+    </ProductWrapper>
+  );
 }

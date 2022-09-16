@@ -1,52 +1,67 @@
 import Header from "../Header/Header";
-import {Wrapper,ContentWrapper,Footer,Button} from './Checkout.style'
+import { Wrapper, ContentWrapper, Footer, Button } from "./Checkout.style";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../context/UserContext";
-import CartProduct from './CartProduct'
+import CartProduct from "./CartProduct";
+import { Link } from "react-router-dom";
 
 export default function Checkout() {
+  const { total, setTotal } = useContext(UserContext);
+  const [reload, setReload] = useState(false);
+  let locallySavedUserProducts = JSON.parse(localStorage.getItem("userItem"));
 
-  const{cartItems,total,setTotal,setCartItems}=useContext(UserContext);
-
-  useEffect(()=>{
+  useEffect(() => {
     updateTotal();
-   },[...cartItems])
+  }, [reload]);
 
-function updateTotal(){
-  let count=0;
-  for(let i=0; i < cartItems.length;i++){
-    const total2 = (Number(cartItems[i].pPrice)*(cartItems[i].qtd));
-    count +=total2;
-  }
-  setTotal(count);
-}
-  
-function valuePrice(value){
-    const newValue = ((value)/100).toFixed(2).replace(".",",");
-    return newValue
+  function updateTotal() {
+    let sum = 0;
+    if (locallySavedUserProducts) {
+      for (let i = 0; i < locallySavedUserProducts.length; i++) {
+        const newSum =
+          Number(locallySavedUserProducts[i].pPrice) *
+          locallySavedUserProducts[i].qtd;
+        sum += newSum;
+      }
+    }
+
+    setTotal(sum);
   }
 
   return (
     <Wrapper>
-      <Header/>
+      <Header />
       <ContentWrapper>
-        {cartItems.map((product,index)=>
-        <CartProduct 
-        key={index}
-        id={index}
-        name={product.pName}
-        price={product.pPrice}
-        image={product.pImage}
-        qtd={product.qtd}
-        setTotal={setTotal}
-        />)}
+        {JSON.parse(localStorage.getItem("userItem")) ? (
+          JSON.parse(localStorage.getItem("userItem")).map((product, index) => (
+            <CartProduct
+              key={index}
+              id={index}
+              name={product.pName}
+              price={product.pPrice}
+              image={product.pImage}
+              qtd={product.qtd}
+              setTotal={setTotal}
+              locallySavedUserProducts={locallySavedUserProducts}
+              reload={reload}
+              setReload={setReload}
+            />
+          ))
+        ) : (
+          <>
+            <p>
+              Carrinho vazio
+              <Link to="/" >
+                Adicionar itens
+              </Link>
+            </p>
+          </>
+        )}
       </ContentWrapper>
       <Footer>
-        <h1>Valor Final R${valuePrice(total)}</h1>
-        <Button >Finalizar compra</Button>
+        <h1>TOTAL: R${(total / 100).toFixed(2).replace(".", ",")}</h1>
+        <Button>Finalizar compra</Button>
       </Footer>
     </Wrapper>
   );
 }
-
-

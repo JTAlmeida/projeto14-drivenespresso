@@ -14,15 +14,16 @@ export default function Product({
   name,
   id,
 }) {
-  let locallySavedUserProducts = JSON.parse(localStorage.getItem("userItem"));
+  let locallySavedUserProducts =
+    JSON.parse(localStorage.getItem("userItem")) || [];
   const { cartItems, setCartItems } = useContext(ProductsContext);
   const {user} = useContext(UserContext);
   const navigate = useNavigate();
-  const [qtd, setQtd] = useState("");
+  const [qtd, setQtd] = useState(0);
 
-  if (cartItems && cartItems.length === 0 && locallySavedUserProducts) {
+  /*if (cartItems && cartItems.length === 0 && locallySavedUserProducts) {
     setCartItems(locallySavedUserProducts);
-  }
+  }*/
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -30,25 +31,56 @@ export default function Product({
   }
 
   function addItemToCart(name, price, image, id) {
-    localStorage.setItem(
-      "userItem",
-      JSON.stringify([
-        ...cartItems,
-        {
-          id: cartItems.length,
-          pId: id,
-          pName: name,
-          pImage: productImage,
-          pPrice: price,
-          qtd: Number(qtd),
-        },
-      ])
-    );
+    if (qtd === 0) {
+      alert("A quantidade deve ser maior que 0.");
+    }
+
+    if (locallySavedUserProducts.length > 0) {
+      locallySavedUserProducts.forEach((product, index) => {
+        if (product.pId === id) {
+          locallySavedUserProducts[index].qtd = Number(product.qtd + qtd);
+          console.log(locallySavedUserProducts);
+          localStorage.removeItem("userItem");
+          localStorage.setItem(
+            "userItem",
+            JSON.stringify(locallySavedUserProducts)
+          );
+          setQtd(0);
+        } else {
+          localStorage.setItem(
+            "userItem",
+            JSON.stringify([
+              ...locallySavedUserProducts,
+              {
+                pId: id,
+                pName: name,
+                pImage: productImage,
+                pPrice: price,
+                qtd: Number(qtd),
+              },
+            ])
+          );
+        }
+      });
+    } else {
+      localStorage.setItem(
+        "userItem",
+        JSON.stringify([
+          ...locallySavedUserProducts,
+          {
+            pId: id,
+            pName: name,
+            pImage: productImage,
+            pPrice: price,
+            qtd: Number(qtd),
+          },
+        ])
+      );
+    }
 
     setCartItems([
       ...cartItems,
       {
-        id: cartItems.length,
         pId: id,
         pName: name,
         pImage: productImage,
@@ -64,13 +96,12 @@ export default function Product({
       qtd: qtd,
     };
 
-    postProducts(body)
-      .then(() => {
-        console.log("postado");
-      })
+    /*postProducts(body)
+      .then(() => {})
       .catch((error) => {
         console.error(error);
-      });
+      });*/
+    setQtd(0);
   }
 
   function valuePrice(price) {
@@ -99,7 +130,7 @@ export default function Product({
             placeholder="0"
             name="amount"
             type="number"
-            min="1"
+            min="0"
             max="100"
             required
             value={qtd}
@@ -117,6 +148,7 @@ export default function Product({
               }
             }}
           />
+
           <Button
             type="submit"
             onClick={() => {
@@ -124,13 +156,6 @@ export default function Product({
             }}
           >
             Adicionar ao carrinho
-          </Button>
-          <Button
-            onClick={() => {
-              navigate("/checkout");
-            }}
-          >
-            Comprar
           </Button>
         </Form>
       </ProductWrapper>

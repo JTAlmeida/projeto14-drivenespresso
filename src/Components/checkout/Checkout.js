@@ -55,7 +55,7 @@ export default function Checkout() {
           JSON.parse(localStorage.getItem("userItem")).map((product, index) => (
             <CartProduct
               key={index}
-              id={index}
+              pId={product.pId}
               name={product.pName}
               price={product.pPrice}
               image={product.pImage}

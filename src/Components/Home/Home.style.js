@@ -22,6 +22,26 @@ export const ContentWrapper = styled.div`
   overflow: auto;
 `;
 
+export const FilterBar = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+
+  button {
+    text-align: center;
+    height: 30px;  
+    min-width: 20%;
+    max-width: 30%;
+    background-color: #988c51;
+    color: #fafafa;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+`;
+
 export const ProductWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -78,9 +98,9 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   max-width: 20%;
-  max-height: 25%;
+  max-height: 30%;
   min-width: 30px;
-  min-height: 20%;
+  min-height: 25%;
   text-align: center;
   border-radius: 5px;
   border: 2px solid #988c51;

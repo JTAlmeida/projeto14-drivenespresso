@@ -17,24 +17,24 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  //justify-content: space-between;
   background-color: #f3f3f3;
   border-radius: 10px;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   overflow: auto;
 
-p{
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  font-weight: 700;
-  color: #2e2e2e;
-}
+  p {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #2e2e2e;
+  }
 `;
 
 export const ProductWrapper = styled.div`
@@ -45,15 +45,14 @@ export const ProductWrapper = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
-  min-height: 20%;
-  width: 90%;
-  background-color: #fafafa;
+  max-height: 30%;
+  width: 95%;
+  border-radius: 15px;
+  background-color: #ffffff;
 
   img {
-    max-width: 80%;
-    max-height: 80%;
-    min-width: 10%;
-    min-height: 10%;
+    max-width: 90%;
+    max-height: 35%;
   }
 
   h1 {
@@ -77,19 +76,42 @@ export const ProductWrapper = styled.div`
 
 export const Form = styled.form`
   min-width: 10%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  img {
+    max-width: 29px;
+    max-height: 29px;
+  }
 `;
 
 export const Input = styled.input`
-  height: 30px;
-  width: 100%;
-  padding-left: 6px;
+  max-width: 20%;
+  max-height: 25%;
+  min-width: 35px;
+  min-height: 20%;
   text-align: center;
   border-radius: 5px;
+  border: 2px solid #988c51;
   color: rgba(0, 0, 0, 1);
-  font-size: 18px;
-  font-weight: 400;
-  margin: 5px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
   background-color: #fff8e7;
+
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
 
   &::placeholder {
     color: #6f6f70;
@@ -118,15 +140,15 @@ export const Footer = styled.div`
 `;
 
 export const Button = styled.button`
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 50%;
-min-width: 20%;
-background-color: #988c51;
-border-radius: 10px;
-color: #fafafa;
-font-size: 20px;
-font-weight: 700;
-cursor: pointer;
-`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50%;
+  min-width: 20%;
+  background-color: #988c51;
+  border-radius: 10px;
+  color: #fafafa;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+`;

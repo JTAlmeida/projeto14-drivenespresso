@@ -7,6 +7,8 @@ import Signup from "./Signup/Signup";
 import Checkout from "./checkout/Checkout.js";
 import UserContext from "../context/UserContext";
 import ProductsContext from "../context/ProductsContext";
+import Payment from "./Payment/Payment";
+
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -14,6 +16,14 @@ function App() {
   const [productsWihtNewQuantity, setproductsWihtNewQuantity] = useState([]);
   const [total, setTotal] = useState(0);
   const [user, setUser] = useState("");
+  const [paymentString,setpaymentString]=useState('');
+  let [userInfoForms, setUserInfoForms] = useState({
+    nome: "",
+    telefone: "",
+    CEP: "",
+    endereço: "",
+    númeroResidência: "",
+});
 
   const auth = JSON.parse(localStorage.getItem("drivenespresso"));
 
@@ -22,6 +32,8 @@ function App() {
       setUser(JSON.parse(localStorage.getItem("drivenespresso")));
     }
   }, []);
+
+
 
   return (
     <>
@@ -38,13 +50,14 @@ function App() {
           setTotal,
         }}
       >
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider value={{ user, setUser,paymentString,setpaymentString,userInfoForms,setUserInfoForms }}>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/sign-up" element={<Signup />}></Route>
               <Route path="/sign-in" element={<Signin />}></Route>
-              <Route path="/checkout" element={<Checkout />}></Route>
+              <Route path="/checkout" element={<Checkout/>}></Route>
+              <Route path="/payment" element ={<Payment/>}></Route>
             </Routes>
           </BrowserRouter>
         </UserContext.Provider>

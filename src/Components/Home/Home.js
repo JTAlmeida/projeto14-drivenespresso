@@ -1,16 +1,15 @@
 import Header from "../Header/Header";
 import { Wrapper, ContentWrapper } from "./Home.style";
-import { getProducts } from "../../service/API";
 import Product from "../Home/Product";
 import { useContext, useEffect } from "react";
 import ProductsContext from "../../context/ProductsContext";
 import UserContext from "../../context/UserContext";
-
+import { getProducts } from "../../service/API";
 
 export default function Home() {
+  
   const { setProducts, products } = useContext(ProductsContext);
   const { user, setUser } = useContext(UserContext);
-
 
   useEffect(() => {
     
@@ -25,14 +24,6 @@ export default function Home() {
     if (user === "") {
       setUser(JSON.parse(localStorage.getItem("drivenespresso")));
     }
-
-    getProducts()
-    .then((products) => {
-      setProducts(products.data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
   }, []);
 
   return (

@@ -16,7 +16,6 @@ export default () => {
     }
   }
 
-
   return (
     <>
       {user ? (
@@ -44,6 +43,7 @@ export default () => {
                 return;
               }
               localStorage.clear("drivenespresso");
+              localStorage.clear("userItem");
               setUser("");
               navigate("/");
             }}

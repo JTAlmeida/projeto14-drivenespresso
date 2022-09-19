@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 export const ContentWrapper = styled.div`
-  border: 2px solid black;
   min-height: 68vh;
   width: 96vw;
   margin-top: 16vh;
@@ -35,7 +34,6 @@ p{
 }
 `;
 export const ProductWrapper = styled.div`
-  border: 2px solid green;
   display: flex;
   align-items: center;
   text-align: center;
@@ -58,11 +56,9 @@ height: 90px;
 width: 60%;
 display: flex;
 justify-content: space-around;
-border: 2px solid red;
 `
 export const AdressInfo =styled.div`
 width: 100%;
-border: 2px solid pink;
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -71,7 +67,6 @@ margin-bottom: 4px;
 span{
   height: 30px;
   width: 100px;
-  border: 2px solid red;
 }
 
 p{
@@ -81,7 +76,6 @@ p{
 }
 `
 export const AdressBox= styled.div`
-border : 2px solid purple;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -89,13 +83,35 @@ align-items: flex-end;
 width: 70%;
 `
 export const QR=styled.div`
-border: 2px solid red;
-
 img{
   height: 100px;
   width: 100px;
 }
 `
-export const CreditForms=styled.div`
-border: 2px solid orange;
+export const ItemsList =styled.div`
+width : 100%;
+display: flex;
+justify-content: space-between;
+margin-top: 20px;
+
+div {
+    color: #6f6f70;
+    max-width: 100%;
+    font-size: clamp(5px, 15px, 15px);
+    font-weight: 500;
+    padding-bottom: 10px;
+  }
+`
+export const ItemsContainer=styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+min-height: 70%;
+
+h1 {
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 5px;
+  }
 `

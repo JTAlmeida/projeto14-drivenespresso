@@ -33,7 +33,13 @@ function signIn(body) {
 }
 
 function postPurchase(body){
+  console.log(body);
   const purchase = `${URL_BASE}/payment`;
   return axios.post(purchase,body,createHeaders());
 }
-export { getProducts, signUp, signIn, postProducts,postPurchase};
+
+function getUserPurchase(){
+  const userPurchase = `${URL_BASE}/payment`;
+  return axios.get(userPurchase);
+}
+export { getProducts, signUp, signIn, postProducts,postPurchase,getUserPurchase};

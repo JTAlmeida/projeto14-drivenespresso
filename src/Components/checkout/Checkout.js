@@ -3,12 +3,18 @@ import { Wrapper, ContentWrapper, Footer, Button } from "./Checkout.style";
 import { useContext, useEffect, useState } from "react";
 import ProductsContext from "../../context/ProductsContext";
 import CartProduct from "./CartProduct";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 export default function Checkout() {
   const { total, setTotal } = useContext(ProductsContext);
   const [reload, setReload] = useState(false);
+
   let locallySavedUserProducts = JSON.parse(localStorage.getItem("userItem"));
+  const locallySavedUserData = localStorage.getItem("drivenespresso");
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     updateTotal();
@@ -24,13 +30,26 @@ export default function Checkout() {
         sum += newSum;
       }
     }
-
     setTotal(sum);
+  }
+
+  function checkUser(){
+    
+    if (locallySavedUserData === null){
+      Swal.fire({
+        icon: 'info',
+        title: 'Oops...',
+        text: 'Faça login para finalizar as compras :)',
+      });
+      navigate('/sign-in');
+    } else{
+      navigate('/payment')
+    }
   }
 
   return (
     <Wrapper>
-      <Header />
+      <Header />  
       <ContentWrapper>
         {JSON.parse(localStorage.getItem("userItem")) ? (
           JSON.parse(localStorage.getItem("userItem")).map((product, index) => (
@@ -57,11 +76,11 @@ export default function Checkout() {
             </p>
           </>
         )}
-      </ContentWrapper>
-      <Footer>
+        <Footer>
         <h1>TOTAL: R${(total / 100).toFixed(2).replace(".", ",")}</h1>
-        <Button>Finalizar compra</Button>
+        <Button onClick={()=> checkUser()} >Finalizar compra</Button>
       </Footer>
+      </ContentWrapper> 
     </Wrapper>
   );
 }

@@ -8,7 +8,7 @@ import ProductsContext from "../../context/ProductsContext";
 
 export default function Header() {
   const navigate = useNavigate();
-  const { cardItems, setCardItems } = useContext(ProductsContext);
+  const { cartItems, setCartItems } = useContext(ProductsContext);
 
   return (
     <Wrapper>
@@ -28,7 +28,7 @@ export default function Header() {
           navigate("/checkout");
         }}
       />
-      {cardItems.length > 0 ? <ItemCount>{cardItems.length}</ItemCount> : <></>}
+      {cartItems === 'null'? <ItemCount>{cartItems.length}</ItemCount> : <></>}
     </Wrapper>
   );
 }

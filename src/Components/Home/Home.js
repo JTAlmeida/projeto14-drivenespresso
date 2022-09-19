@@ -6,14 +6,11 @@ import { useContext, useEffect } from "react";
 import ProductsContext from "../../context/ProductsContext";
 import UserContext from "../../context/UserContext";
 
-
 export default function Home() {
   const { setProducts, products } = useContext(ProductsContext);
   const { user, setUser } = useContext(UserContext);
 
-
   useEffect(() => {
-    
     getProducts()
       .then((products) => {
         setProducts(products.data);
@@ -25,14 +22,6 @@ export default function Home() {
     if (user === "") {
       setUser(JSON.parse(localStorage.getItem("drivenespresso")));
     }
-
-    getProducts()
-    .then((products) => {
-      setProducts(products.data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
   }, []);
 
   return (

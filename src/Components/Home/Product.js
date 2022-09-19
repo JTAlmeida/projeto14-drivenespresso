@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProductsContext from "../../context/ProductsContext";
+import UserContext from "../../context/UserContext";
 import { postProducts } from "../../service/API";
 import { ProductWrapper, Form, Input, Button } from "./Home.style";
 import minus from "../../assets/minus.png";
@@ -15,6 +16,7 @@ export default function Product({
 }) {
   let locallySavedUserProducts = JSON.parse(localStorage.getItem("userItem"));
   const { cartItems, setCartItems } = useContext(ProductsContext);
+  const {user} = useContext(UserContext);
   const navigate = useNavigate();
   const [qtd, setQtd] = useState("");
 

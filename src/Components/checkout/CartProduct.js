@@ -11,14 +11,15 @@ export default function CartProduct({
   reload,
   setReload,
 }) {
+  
   const [newQtd, setNewQtd] = useState(qtd);
-
-  function changeQuantity(e) {
+  
+  function changeQuantity(e){
     e.preventDefault();
     setNewQtd(e.target.value);
 
     locallySavedUserProducts.forEach((product, index) => {
-      if (product.id === id) {
+      if (product.id === id  ) {
         locallySavedUserProducts[index] = {
           id,
           pId: locallySavedUserProducts[index].pId,

@@ -9,7 +9,6 @@ import UserContext from "../context/UserContext";
 import ProductsContext from "../context/ProductsContext";
 import Payment from "./Payment/Payment";
 
-
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
@@ -24,6 +23,8 @@ function App() {
     endereço: "",
     númeroResidência: "",
 });
+const [number,setNumber]= useState(0);
+
 
   const auth = JSON.parse(localStorage.getItem("drivenespresso"));
 
@@ -32,8 +33,6 @@ function App() {
       setUser(JSON.parse(localStorage.getItem("drivenespresso")));
     }
   }, []);
-
-
 
   return (
     <>
@@ -48,12 +47,15 @@ function App() {
           setproductsWihtNewQuantity,
           total,
           setTotal,
+          number,
+          setNumber,
+
         }}
       >
         <UserContext.Provider value={{ user, setUser,paymentString,setpaymentString,userInfoForms,setUserInfoForms }}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Home />}></Route>
+              <Route path="/" element={<Home/>}></Route>
               <Route path="/sign-up" element={<Signup />}></Route>
               <Route path="/sign-in" element={<Signin />}></Route>
               <Route path="/checkout" element={<Checkout/>}></Route>

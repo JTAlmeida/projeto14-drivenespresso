@@ -1,12 +1,16 @@
 import Header from "../Header/Header";
 import { Wrapper, ContentWrapper } from "./Home.style";
-import { getProducts } from "../../service/API";
 import Product from "../Home/Product";
 import { useContext, useEffect } from "react";
 import ProductsContext from "../../context/ProductsContext";
 import UserContext from "../../context/UserContext";
+<<<<<<< HEAD
+=======
+import { getProducts } from "../../service/API";
+>>>>>>> 2d581e03e190a4e573b1806b2ca39ed21aa0c5da
 
 export default function Home() {
+  
   const { setProducts, products } = useContext(ProductsContext);
   const { user, setUser } = useContext(UserContext);
 

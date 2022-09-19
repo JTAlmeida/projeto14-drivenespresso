@@ -1,4 +1,5 @@
 import axios from "axios";
+import Payment from "../Components/Payment/Payment";
 const URL_BASE = "https://back-drivenespresso.herokuapp.com";
 
 function createHeaders() {
@@ -12,13 +13,13 @@ function createHeaders() {
 }
 
 function postProducts(body) {
-  const promise = axios.post(`${URL_BASE}`, body);
-  return promise;
+  const products = `${URL_BASE}`;
+  return axios.post(products,body);
 }
 
 function getProducts() {
-  const promise = axios.get(`${URL_BASE}`);
-  return promise;
+  const products = `${URL_BASE}`;
+  return axios.get(products);
 }
 
 function signUp(body) {
@@ -31,4 +32,8 @@ function signIn(body) {
   return axios.post(signInAPI, body);
 }
 
-export { getProducts, signUp, signIn, postProducts};
+function postPurchase(body){
+  const purchase = `${URL_BASE}/payment`;
+  return axios.post(purchase,body,createHeaders());
+}
+export { getProducts, signUp, signIn, postProducts,postPurchase};

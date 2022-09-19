@@ -28,7 +28,11 @@ export default function Header() {
           navigate("/checkout");
         }}
       />
+<<<<<<< HEAD
       {cartItems.length > 0 ? <ItemCount>{cartItems.length}</ItemCount> : <></>}
+=======
+      {cartItems === 'null'? <ItemCount>{cartItems.length}</ItemCount> : <></>}
+>>>>>>> 2d581e03e190a4e573b1806b2ca39ed21aa0c5da
     </Wrapper>
   );
 }

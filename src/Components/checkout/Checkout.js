@@ -5,6 +5,7 @@ import ProductsContext from "../../context/ProductsContext";
 import CartProduct from "./CartProduct";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import UserContext from "../../context/UserContext";
 
 
 export default function Checkout() {
@@ -14,8 +15,7 @@ export default function Checkout() {
   let locallySavedUserProducts = JSON.parse(localStorage.getItem("userItem"));
   const locallySavedUserData = localStorage.getItem("drivenespresso");
   const navigate = useNavigate();
-
-
+ 
   useEffect(() => {
     updateTotal();
   }, [reload]);

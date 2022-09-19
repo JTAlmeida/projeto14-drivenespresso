@@ -1,21 +1,22 @@
 import styled from "styled-components";
 
 export const PaymentMethodBox= styled.div`
-border: 2px solid yellow;
-height: 100%;
+height:100%;
 display: flex;
 margin-top:2px;
 justify-content: center;
 align-items: center;
 flex-direction: column;
 
+div{
+    max-height: 12px;
+}
+
 img{
-    border: 2px solid red;
     height:45px;
     width: 45px;
 }
 span{
-    border: 2px solid pink;
     align-items: center;
     justify-content: center;
     font-size: 20px;

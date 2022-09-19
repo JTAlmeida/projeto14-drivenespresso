@@ -6,17 +6,19 @@ import { ContentWrapper, PaymentOptions, ProductWrapper,Wrapper } from "./Paymen
 import PaymentMethodOptions from '../Payment/PaymentMethodOptions'
 import {  useState } from 'react';
 import AdressForms from './AdressForms';
-
+import { useContext } from 'react';
+import ProductsContext from '../../context/ProductsContext';
+import { useEffect } from 'react';
+import { getUserPurchase } from '../../service/API';
 
 
 export default function Payment(){   
-    
-    
+
     const [count,setCount]=useState(0);
     const [loading,setLoading]=useState(true);
-
-
+    const userPurchases = JSON.parse(localStorage.getItem('userItem'));
     
+  
     const paymentMethods=[
         {
             id: 1,
@@ -47,14 +49,11 @@ export default function Payment(){
         }
     }
 
-   
     
     return(
 <Wrapper>
     <Header/>
  <ContentWrapper>
-    {loading ?
-    <>
             <ProductWrapper>
             <h1>Método de Pagamento</h1>
             <PaymentOptions>
@@ -73,13 +72,10 @@ export default function Payment(){
         </ProductWrapper>     
         <AdressForms
         setLoading={setLoading}
-        />
-    
-    </>
-
-        : 
-        <ProductWrapper> produtos</ProductWrapper> }
+        />    
 </ContentWrapper>
 </Wrapper>
     )
 }
+
+

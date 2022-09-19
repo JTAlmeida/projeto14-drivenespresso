@@ -15,7 +15,9 @@ export default function CartProduct({
   reload,
   setReload,
 }) {
+  
   const [newQtd, setNewQtd] = useState(qtd);
+
   const { setCartItems } = useContext(ProductsContext);
 
   useEffect(() => {
@@ -23,11 +25,14 @@ export default function CartProduct({
   }, []);
 
   function changeQuantity(e) {
+
     e.preventDefault();
     setNewQtd(e.target.value);
 
     locallySavedUserProducts.forEach((product, index) => {
+
       if (product.pId === pId) {
+
         locallySavedUserProducts[index] = {
           pId: locallySavedUserProducts[index].pId,
           pImage: image,

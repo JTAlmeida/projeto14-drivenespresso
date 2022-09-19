@@ -1,15 +1,18 @@
 import { useContext } from "react";
-import { useState } from "react";
 import ProductsContext from "../../context/ProductsContext";
 import UserContext from "../../context/UserContext";
 import { AdressBox, AdressInfo, ProductWrapper,ContentWrapper  } from "./AdressForms.style"
 import { postPurchase } from '../../service/API';
-
-
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function AdressForms({setLoading}){   
     const {paymentString,setUserInfoForms,userInfoForms}= useContext(UserContext);
     const { total } = useContext(ProductsContext); 
+    const{setNumber}=useContext(ProductsContext);
+
+    const navigate = useNavigate()
+
 
     function handleForm(e){
         setUserInfoForms({
@@ -20,16 +23,16 @@ export default function AdressForms({setLoading}){
 
     function postPurchaseAPI(e){
 
-        console.log(userInfoForms);
         e.preventDefault();
         if(paymentString === ""){
             alert('escolha um método de pagamento')
             return;
-    }
+        }
+        const num =((Math.random())*100);
+        setNumber(num);
 
-        const number = (Math.random())*100;        
         const userPurchases = JSON.parse(localStorage.getItem('userItem'));
-        const user =   JSON.parse(localStorage.getItem('drivenespresso')) ;    
+        const user =   JSON.parse(localStorage.getItem('drivenespresso'));    
         
         const purchases = userPurchases.map(products=>({
             product : products.pId,
@@ -41,20 +44,21 @@ export default function AdressForms({setLoading}){
             userInfo: [userInfoForms],
             userEmail : user.email,
             items: purchases,
-            orderNUmber: number,
+            orderNUmber: num,
             total: (total / 100).toFixed(2).replace(".", ","),
             paymentMethod: paymentString
         } 
 
         postPurchase(body).then(()=> {
             setLoading(false);
-            setUserInfoForms({
-                nome: "",
-                telefone: "",
-                CEP: "",
-                endereço: "",
-                númeroResidência: "",
-            })
+              Swal.fire({
+                title: 'Compra concluida com sucesso!',
+                confirmButtonText: 'OK',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate('/')
+                } 
+              })
         }).catch((error)=>{
             console.error(error);
           }); 
@@ -76,6 +80,7 @@ export default function AdressForms({setLoading}){
                 name="nome"
                 value={userInfoForms.nome}
                 onChange={handleForm}
+                placeholder='Nome e sobrenome'
                 />
             </div> 
         </AdressInfo>
@@ -90,6 +95,7 @@ export default function AdressForms({setLoading}){
                 required
                 value={userInfoForms.telefone}
                 onChange={handleForm}
+                placeholder='ex : (xx)xxxxx-xxxx'
                 />
             </div> 
         </AdressInfo>
@@ -104,6 +110,7 @@ export default function AdressForms({setLoading}){
                 required
                 value={userInfoForms.CEP}
                 onChange={handleForm}
+                placeholder='ex : xx.xxx.xxx-xx'
                 />
             </div> 
         </AdressInfo>
@@ -139,8 +146,6 @@ export default function AdressForms({setLoading}){
         </form>
         </AdressBox>        
     </ProductWrapper>
-
    </>
-
-    )
+   )
     }

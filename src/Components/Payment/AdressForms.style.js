@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const ContentWrapper = styled.div`
-  border: 2px solid black;
   min-height: 68vh;
   width: 96vw;
   margin-top: 16vh;
@@ -28,7 +27,6 @@ p{
 }
 `;
 export const ProductWrapper = styled.div`
-  border: 2px solid green;
   display: flex;
   align-items: center;
   text-align: center;
@@ -47,7 +45,6 @@ export const ProductWrapper = styled.div`
 `
 export const AdressInfo =styled.div`
 width: 100%;
-border: 2px solid pink;
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -56,7 +53,6 @@ margin-bottom: 4px;
 span{
   height: 30px;
   width: 100px;
-  border: 2px solid red;
 }
 
 p{
@@ -66,7 +62,6 @@ p{
 }
 `
 export const AdressBox= styled.div`
-border : 2px solid purple;
 display: flex;
 flex-direction: column;
 justify-content: center;

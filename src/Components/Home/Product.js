@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import ProductsContext from "../../context/ProductsContext";
 import { postProducts } from "../../service/API";
 import { ProductWrapper, Form, Input, Button } from "./Home.style";
+import minus from "../../assets/minus.png";
+import plus from "../../assets/plus.png";
 
 export default function Product({
   price,
@@ -81,6 +83,16 @@ export default function Product({
         <h2>{description}</h2>
         <h3>R${valuePrice(price)}</h3>
         <Form onSubmit={handleSubmit}>
+          <img
+            src={minus}
+            alt="-"
+            onClick={() => {
+              if (Number(qtd) === 0) {
+                return;
+              }
+              setQtd(Number(qtd) - 1);
+            }}
+          />
           <Input
             placeholder="0"
             name="amount"
@@ -90,6 +102,18 @@ export default function Product({
             required
             value={qtd}
             onChange={(e) => setQtd(e.target.value)}
+          />
+          <img
+            src={plus}
+            alt="+"
+            onClick={() => {
+              {
+                if (Number(qtd) === 100) {
+                  return alert("Não é possível adicionar mais de 100 itens.");
+                }
+                setQtd(Number(qtd) + 1);
+              }
+            }}
           />
           <Button
             type="submit"
